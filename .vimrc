@@ -37,11 +37,6 @@ colorscheme solarized
 set background=dark
 
 
-filetype on
-filetype indent on
-filetype plugin on
-
-
 " statusline
 
 set laststatus=2
@@ -82,6 +77,7 @@ endfunction
 
 
 
+filetype off
 " Bundles settings
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -102,6 +98,11 @@ Bundle 'vim-scripts/TaskList.vim'
 Bundle 'hallison/vim-markdown'
 " vim-ruby
 Bundle 'vim-ruby/vim-ruby'
+" powerful python autocomplete
+Bundle 'davidhalter/jedi-vim'
+
+
+filetype plugin indent on
 
 
 let g:neocomplcache_enable_at_startup=1
