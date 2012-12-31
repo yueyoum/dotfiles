@@ -14,27 +14,18 @@ set matchtime=2
 
 set ruler 
 set number
-""set cursorline
+set nocursorline
 set backspace=indent,eol,start
-set nowrap
+""set nowrap
 set history=100
 set nofoldenable
 
-set encoding=utf-8
-set fileencoding=utf-8
-set t_Co=256
+""set t_Co=256
 
 
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_degrade=0
-let g:solarized_bold=1
-let g:solarized_underline=1
-let g:solarized_italic=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
-colorscheme solarized
-set background=dark
+
+colorscheme elflord
+""set background=dark
 
 
 " statusline
@@ -89,7 +80,7 @@ Bundle 'VimEz/CSApprox'
 " For programming Python
 Bundle 'kevinw/pyflakes-vim'
 " For programming Erlang
-Bundle 'jimenezrick/vimerl'
+""Bundle 'jimenezrick/vimerl'
 " Autocomplete
 Bundle 'Shougo/neocomplcache'
 " Tasklist
@@ -97,9 +88,9 @@ Bundle 'vim-scripts/TaskList.vim'
 " Syntax highligh of markdown
 Bundle 'hallison/vim-markdown'
 " vim-ruby
-Bundle 'vim-ruby/vim-ruby'
+""Bundle 'vim-ruby/vim-ruby'
 " powerful python autocomplete
-Bundle 'davidhalter/jedi-vim'
+""Bundle 'davidhalter/jedi-vim'
 
 
 filetype plugin indent on
@@ -116,3 +107,4 @@ let g:miniBufExplModSelTarget=1
 
 
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
