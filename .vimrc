@@ -20,12 +20,11 @@ set backspace=indent,eol,start
 set history=100
 set nofoldenable
 
-""set t_Co=256
+set t_Co=256
 
 
-
-colorscheme elflord
-""set background=dark
+colorscheme molokai
+set background=dark
 
 
 " statusline
@@ -98,7 +97,7 @@ filetype plugin indent on
 
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length=2 
+let g:neocomplcache_min_syntax_length=1 
 
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
@@ -108,3 +107,4 @@ let g:miniBufExplModSelTarget=1
 
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
+
