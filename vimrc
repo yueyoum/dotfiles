@@ -12,6 +12,7 @@ set ignorecase
 set showmatch
 set matchtime=2
 set hlsearch
+set incsearch
 
 set ruler 
 set number
@@ -23,10 +24,11 @@ set nofoldenable
 
 set t_Co=256
 
-
 colorscheme molokai
 set background=dark
 
+set colorcolumn=81
+highlight ColorColumn ctermbg=234
 
 " statusline
 
@@ -43,6 +45,14 @@ set statusline+=%-12(\ %l/%L,%c\ %)%p%%
 
 
 " Custom Key bindings
+
+vnoremap > >gv
+vnoremap < <gv
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 inoremap <C-e> <Esc><S-a>
 inoremap <C-a> <Esc><S-i>
