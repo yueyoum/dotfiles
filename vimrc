@@ -94,6 +94,7 @@ Bundle 'hallison/vim-markdown'
 Bundle 'yueyoum/vim-alignment'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/bufexplorer.zip'
 
 
 filetype plugin indent on

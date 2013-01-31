@@ -1,6 +1,7 @@
 colorscheme molokai
 set guifont=ubuntu\ mono\ 11
 set cursorline
+set colorcolumn=0
 
 " No menu or toolbar
 set guioptions-=m
