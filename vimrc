@@ -21,6 +21,7 @@ set nocursorline
 set backspace=indent,eol,start
 set history=100
 set nofoldenable
+set ttyfast
 
 set t_Co=256
 
@@ -33,14 +34,6 @@ highlight ColorColumn ctermbg=234
 " statusline
 
 set laststatus=2
-
-set statusline=%<
-set statusline+=%1*[%t]%*
-set statusline+=%2*%w%m%r%*
-set statusline+=\ %y
-set statusline+=[%{&ff}][%{&fenc}]
-set statusline+=%=
-set statusline+=%-12(\ %l/%L,%c\ %)%p%%
 
 
 
@@ -58,23 +51,6 @@ inoremap <C-e> <Esc><S-a>
 inoremap <C-a> <Esc><S-i>
 inoremap <C-l> <C-x><C-o>
 
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
-
-inoremap ) <C-R>=ClosePairs(')')<CR>
-inoremap ] <C-R>=ClosePairs(']')<CR>
-inoremap } <C-R>=ClosePairs('}')<CR>
-
-
-function ClosePairs(char)
-    if getline(".")[col(".")-1] == a:char
-        return "\<RIGHT>"
-    else
-        return a:char
-    endif
-endfunction
-
 
 
 filetype off
@@ -84,21 +60,22 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-" Bundle 'VimEz/CSApprox'
 Bundle 'kevinw/pyflakes-vim'
-" Bundle 'jimenezrick/vimerl'
+Bundle 'jimenezrick/vimerl'
 " Bundle 'davidhalter/jedi-vim'
 Bundle 'Shougo/neocomplcache'
 Bundle 'vim-scripts/TaskList.vim'
-Bundle 'hallison/vim-markdown'
+Bundle 'plasticboy/vim-markdown'
 Bundle 'yueyoum/vim-alignment'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'scrooloose/nerdtree'
 
 
 filetype plugin indent on
 
+let g:vim_markdown_folding_disabled=1
 
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_smart_case=1
@@ -117,4 +94,5 @@ let g:ctrlp_custom_ignore = {
 
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
+
 
