@@ -78,7 +78,10 @@ Bundle 'klen/python-mode'
 Bundle 'terryma/vim-smooth-scroll'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
-
+Bundle 'mattn/zencoding-vim'
+Bundle 'skammer/vim-css-color'
+Bundle 'groenewege/vim-less'
+Bundle 'terryma/vim-multiple-cursors'
 
 filetype plugin indent on
 
