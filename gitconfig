@@ -1,0 +1,10 @@
+[user]
+	name = yueyoum
+	email = yueyoum@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = true
+[alias]
+	br = branch
+	st = status
