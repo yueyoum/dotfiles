@@ -5,6 +5,10 @@
 	editor = vim
 [color]
 	ui = true
+[diff]
+	tool = meld
+[merge]
+	tool = meld
 [alias]
 	br = branch
 	st = status
