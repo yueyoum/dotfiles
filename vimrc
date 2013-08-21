@@ -24,11 +24,13 @@ set ttyfast
 
 set t_Co=256
 
-colorscheme molokai
 set background=dark
+colorscheme molokai
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=234
+
+set pastetoggle=<F2>
 
 " statusline
 
@@ -46,15 +48,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-inoremap <C-e> <Esc><S-a>
-inoremap <C-a> <Esc><S-i>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
 inoremap <C-l> <C-x><C-o>
-
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
-
-
 
 filetype off
 
@@ -79,6 +75,9 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mattn/zencoding-vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+
 
 filetype plugin indent on
 
