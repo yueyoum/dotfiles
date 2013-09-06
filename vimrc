@@ -21,21 +21,8 @@ set backspace=indent,eol,start
 set history=100
 set nofoldenable
 set ttyfast
-
-set t_Co=256
-
-set background=dark
-colorscheme molokai
-
-set colorcolumn=81
-highlight ColorColumn ctermbg=234
-
 set pastetoggle=<F2>
-
-" statusline
-
 set laststatus=2
-
 
 
 " Custom Key bindings
@@ -69,7 +56,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
-Bundle 'klen/python-mode'
+"Bundle 'klen/python-mode'
 Bundle 'terryma/vim-smooth-scroll'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
@@ -79,13 +66,23 @@ Bundle 'tpope/vim-surround'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
-
+Bundle 'w0ng/vim-hybrid'
 
 filetype plugin indent on
 
-let g:pymode_run=0
-let g:pymode_lint=0
-let g:pymode_lint_write=0
+
+set t_Co=256
+
+let g:hybrid_use_Xresources=1
+colorscheme hybrid
+
+set colorcolumn=81
+highlight ColorColumn ctermbg=234
+
+
+"let g:pymode_run=0
+"let g:pymode_lint=0
+"let g:pymode_lint_write=0
 
 let g:vim_markdown_folding_disabled=1
 
