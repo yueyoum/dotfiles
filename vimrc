@@ -84,6 +84,8 @@ highlight ColorColumn ctermbg=234
 "let g:pymode_lint=0
 "let g:pymode_lint_write=0
 
+let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$']
+
 let g:vim_markdown_folding_disabled=1
 
 let g:neocomplcache_enable_at_startup=1
