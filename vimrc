@@ -115,6 +115,7 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
+autocmd FileType python setlocal completeopt-=preview
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
 
