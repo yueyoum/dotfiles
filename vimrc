@@ -86,6 +86,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'uarun/vim-protobuf'
 
 filetype plugin indent on
 
