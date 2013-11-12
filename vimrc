@@ -6,7 +6,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set smartindent
+set cindent
 set ignorecase
 set showmatch
 set matchtime=2
