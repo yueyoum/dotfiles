@@ -12,3 +12,9 @@
 [alias]
 	br = branch
 	st = status
+[pack]
+	windowMemory = 100m
+	SizeLimit = 100m
+	threads = 1
+[github]
+	user = yueyoum

@@ -1,6 +1,42 @@
 syntax on
 set nocompatible
 
+filetype off
+
+" Bundles settings
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kevinw/pyflakes-vim'
+Plugin 'vim-scripts/Python-Syntax-Folding'
+Plugin 'jimenezrick/vimerl'
+Plugin 'Shougo/neocomplcache'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'pangloss/vim-javascript'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'uarun/vim-protobuf'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+" colorscheme
+Plugin 'w0ng/vim-hybrid'
+
+call vundle#end()
+
+filetype plugin indent on
+
 
 set expandtab
 set tabstop=4
@@ -39,6 +75,8 @@ inoremap <C-e> <End>
 inoremap <C-a> <Home>
 inoremap <C-l> <C-x><C-o>
 
+nnoremap <F3> :set hlsearch!<CR>
+
 if has("gui_running")
     set guifont=ubuntu\ mono\ 10
     set cursorline
@@ -58,51 +96,19 @@ if has("gui_running")
 endif
 
 
-filetype off
-
-" Bundles settings
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'jimenezrick/vimerl'
-Bundle 'Shougo/neocomplcache'
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'klen/python-mode'
-Bundle 'terryma/vim-smooth-scroll'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'mattn/zencoding-vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-surround'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'uarun/vim-protobuf'
-
-filetype plugin indent on
 
 
 set t_Co=256
 
-let g:hybrid_use_Xresources=1
 colorscheme hybrid
+" set background=dark
+set background=light
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=234
 
 
-"let g:pymode_run=0
-"let g:pymode_lint=0
-"let g:pymode_lint_write=0
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$']
 
@@ -110,7 +116,15 @@ let g:vim_markdown_folding_disabled=1
 
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length=3 
+let g:neocomplcache_min_syntax_length=2
+
+
+let g:EclimCompletionMethod='omnifunc'
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns={}
+endif
+let g:neocomplcache_force_omni_patterns.java='\k\.\k*'
+
 
 let g:ctrlp_cmd='CtrlP ~/codes'
 let g:ctrlp_clear_cache_on_exit=0
@@ -138,4 +152,9 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
+
+let g:indent_guides_start_level=1
+let g:indent_guides_guide_size=4
+hi IndentGuideOdd ctermbg=gray
+hi IndentGuideEven ctermbg=lightgray
 
