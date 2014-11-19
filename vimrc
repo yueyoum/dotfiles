@@ -9,11 +9,10 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kevinw/pyflakes-vim'
-Plugin 'vim-scripts/Python-Syntax-Folding'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'jimenezrick/vimerl'
 Plugin 'Shougo/neocomplcache'
 Plugin 'vim-scripts/TaskList.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
@@ -27,11 +26,11 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 " colorscheme
 Plugin 'w0ng/vim-hybrid'
+Plugin 'chriskempson/vim-tomorrow-theme'
 
 call vundle#end()
 
@@ -77,25 +76,6 @@ inoremap <C-l> <C-x><C-o>
 
 nnoremap <F3> :set hlsearch!<CR>
 
-if has("gui_running")
-    set guifont=ubuntu\ mono\ 10
-    set cursorline
-    set colorcolumn=0
-
-    " No menu or toolbar
-    set guioptions-=m
-    set guioptions-=T
-    " No scrollbars
-    set guioptions-=L
-    set guioptions-=l
-    set guioptions-=R
-    set guioptions-=r
-    set guioptions-=b
-
-    set guioptions+=a
-endif
-
-
 
 
 set t_Co=256
@@ -108,8 +88,6 @@ set colorcolumn=81
 highlight ColorColumn ctermbg=234
 
 
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
-
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$']
 
 let g:vim_markdown_folding_disabled=1
@@ -117,13 +95,6 @@ let g:vim_markdown_folding_disabled=1
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length=2
-
-
-let g:EclimCompletionMethod='omnifunc'
-if !exists('g:neocomplcache_force_omni_patterns')
-    let g:neocomplcache_force_omni_patterns={}
-endif
-let g:neocomplcache_force_omni_patterns.java='\k\.\k*'
 
 
 let g:ctrlp_cmd='CtrlP ~/codes'
@@ -137,6 +108,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(bak|swp|so|pyc|o|beam|dump|gz|bz2|tar)$',
     \}
 
+
+" let g:airline_powerline_fonts=1
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
@@ -153,8 +126,28 @@ autocmd FileType python setlocal completeopt-=preview
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
 
-let g:indent_guides_start_level=1
-let g:indent_guides_guide_size=4
-hi IndentGuideOdd ctermbg=gray
-hi IndentGuideEven ctermbg=lightgray
+
+
+if has("gui_running")
+    set guifont=ubuntu\ mono\ 10
+    set cursorline
+    set colorcolumn=0
+
+    " No menu or toolbar
+    set guioptions-=m
+    set guioptions-=T
+    " No scrollbars
+    set guioptions-=L
+    set guioptions-=l
+    set guioptions-=R
+    set guioptions-=r
+    set guioptions-=b
+
+    set guioptions+=a
+    colorscheme hybrid
+
+    " paste via Crtl+Shift+V
+    nnoremap <silent> <c-s-v> "+gP
+    inoremap <silent> <c-s-v> <Esc><Right>"+gPi
+endif
 
