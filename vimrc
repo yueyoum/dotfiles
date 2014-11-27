@@ -11,14 +11,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jimenezrick/vimerl'
-Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neocomplete'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Lokaltog/vim-powerline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'fholgado/minibufexpl.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'pangloss/vim-javascript'
 Plugin 'terryma/vim-multiple-cursors'
@@ -30,7 +29,6 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 " colorscheme
 Plugin 'w0ng/vim-hybrid'
-Plugin 'chriskempson/vim-tomorrow-theme'
 
 call vundle#end()
 
@@ -78,26 +76,29 @@ nnoremap <F3> :set hlsearch!<CR>
 
 
 
+
 set t_Co=256
 
 colorscheme hybrid
-" set background=dark
 set background=light
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=234
 
 
-let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$']
+let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.bak$', '\.swp$']
+
+let g:syntastic_cpp_compiler_options=' -std=c++11'
 
 let g:vim_markdown_folding_disabled=1
 
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length=2
+let g:acp_enableAtStartup=0
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_start_case=1
+let g:neocomplete#sources#syntax#min_keyword_length=2
 
-
-let g:ctrlp_cmd='CtrlP ~/codes'
+" let g:ctrlp_cmd='CtrlP ~/codes'
+let g:ctrlp_working_path_mode='cra'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_max_depth=10
 let g:ctrlp_lazy_update=1
@@ -108,8 +109,9 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(bak|swp|so|pyc|o|beam|dump|gz|bz2|tar)$',
     \}
 
+" For :CtrlPBuffer
+noremap <c-m> :CtrlPBuffer<CR>
 
-" let g:airline_powerline_fonts=1
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
@@ -129,7 +131,8 @@ autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
 
 
 if has("gui_running")
-    set guifont=ubuntu\ mono\ 10
+    " set guifont=ubuntu\ mono\ 10
+    set guifont=Terminess\ Powerline\ 10
     set cursorline
     set colorcolumn=0
 
@@ -150,4 +153,9 @@ if has("gui_running")
     nnoremap <silent> <c-s-v> "+gP
     inoremap <silent> <c-s-v> <Esc><Right>"+gPi
 endif
+
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 
