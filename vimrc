@@ -32,7 +32,6 @@ Plugin 'w0ng/vim-hybrid'
 
 call vundle#end()
 
-filetype plugin indent on
 
 
 set expandtab
@@ -46,7 +45,7 @@ set matchtime=2
 set hlsearch
 set incsearch
 
-set ruler 
+set ruler
 set number
 set numberwidth=5
 set nocursorline
@@ -158,4 +157,25 @@ endif
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
+
+
+" Automatic remove trailing whitespaces
+
+autocmd FileType c,cpp,java,php,ruby,python,erlang,go,rust,sql,sh,html,css,vim autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+
+" Automatic Insert/Update Header When File Create/Write
+
+autocmd BufNewFile *.py
+    \ exe "normal O" .
+    \ "\# -*- coding: utf-8 -*-\n" .
+    \ "\"\"\"\"\n" .
+    \ "Author:        Wang Chao <yueyoum@gmail.com>\n" .
+    \ "Filename:      " . expand('%:t') . "\n" .
+    \ "Date created:  " . strftime("%Y-%m-%d %H:%M:%S") . "\n" .
+    \ "Description: \n\n" .
+    \ "\"\"\"\"\n"
+
+
+filetype plugin indent on
 
