@@ -9,6 +9,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jimenezrick/vimerl'
@@ -154,7 +155,7 @@ if has("gui_running")
     set guioptions+=a
     set mousemodel=popup
 
-    " colorscheme molokai
+    colorscheme Tomorrow
 
     " paste via Crtl+Shift+V
     " nnoremap <silent> <c-s-v> "+gP
