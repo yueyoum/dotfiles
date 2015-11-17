@@ -7,19 +7,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jimenezrick/vimerl'
-Plugin 'Shougo/neocomplete'
+" Plugin 'Shougo/neocomplete'
 Plugin 'vim-scripts/TaskList.vim'
+Plugin 'vim-scripts/fontzoom.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tomtom/tcomment_vim'
@@ -81,18 +82,18 @@ nnoremap <F3> :set hlsearch!<CR>
 
 set t_Co=256
 
-" colorscheme jellybeans
-colorscheme molokai
-set background=dark
+colorscheme jellybeans
+" colorscheme hybrid
+" set background=dark
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=234
 
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
 let g:airline_powerline_fonts=1
 
-let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.bak$', '\.swp$']
-
-let g:syntastic_cpp_compiler_options=' -std=c++11'
+let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
 
 let g:vim_markdown_folding_disabled=1
 
@@ -119,8 +120,12 @@ let g:ctrlp_custom_ignore = {
 " For :CtrlPBuffer
 noremap <c-m> :CtrlPBuffer<CR>
 
+" For YouCompleteMe
+noremap <S-d> :YcmCompleter GoToDefinition<CR>
+noremap <S-t> :YcmCompleter GetType<CR>
 
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 22, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
@@ -131,6 +136,8 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
+autocmd FileType c setlocal completeopt-=preview
+autocmd FileType cpp setlocal completeopt-=preview
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
@@ -138,7 +145,8 @@ autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
 
 
 if has("gui_running")
-    set guifont=Ubuntu\ Mono\ 12
+    " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+    set guifont=Hack\ Regular\ 13
     set cursorline
     set colorcolumn=0
 
@@ -155,7 +163,7 @@ if has("gui_running")
     set guioptions+=a
     set mousemodel=popup
 
-    colorscheme Tomorrow
+    " colorscheme Tomorrow
 
     " paste via Crtl+Shift+V
     " nnoremap <silent> <c-s-v> "+gP
