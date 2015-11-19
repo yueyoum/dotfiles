@@ -75,19 +75,29 @@ nnoremap <C-l> <C-w>l
 
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
-inoremap <C-l> <C-x><C-o>
+
+" Jump to previous/last edit location
+nnoremap <S-Left> g;
+nnoremap <S-Right> g,
 
 nnoremap <F3> :set hlsearch!<CR>
 
+" For :CtrlPBuffer
+noremap <c-m> :CtrlPBuffer<CR>
+
+" For YouCompleteMe
+noremap <S-d> :YcmCompleter GoToDefinition<CR>
+noremap <S-l> :YcmCompleter GoToDeclaration<CR>
+noremap <S-t> :YcmCompleter GetType<CR>
+noremap <S-w> :YcmCompleter GetDoc<CR>
 
 set t_Co=256
 
-colorscheme jellybeans
-" colorscheme hybrid
-" set background=dark
+" colorscheme jellybeans
+colorscheme Tomorrow
 
 set colorcolumn=81
-highlight ColorColumn ctermbg=234
+highlight ColorColumn ctermbg=255
 
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
@@ -116,13 +126,6 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]\.(git|hg|svn|env)$',
     \ 'file': '\v\.(bak|swp|so|pyc|o|beam|dump|gz|bz2|tar)$',
     \}
-
-" For :CtrlPBuffer
-noremap <c-m> :CtrlPBuffer<CR>
-
-" For YouCompleteMe
-noremap <S-d> :YcmCompleter GoToDefinition<CR>
-noremap <S-t> :YcmCompleter GetType<CR>
 
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 22, 2)<CR>
