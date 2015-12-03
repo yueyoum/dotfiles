@@ -62,6 +62,7 @@ set laststatus=2
 set encoding=utf-8
 set fileencoding=utf-8
 
+set dictionary+=~/.vimdictionary
 
 " Custom Key bindings
 
@@ -73,6 +74,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+inoremap <C-l> <C-x><C-k>
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
 
@@ -190,6 +192,19 @@ autocmd BufNewFile *.py
     \ "Date created:  " . strftime("%Y-%m-%d %H:%M:%S") . "\n" .
     \ "Description: \n\n" .
     \ "\"\"\"\"\n"
+
+
+function! s:insert_c_header()
+    let headername = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    exe "normal O" .
+    \ "#ifndef __" . headername . "__\n" .
+    \ "#define __" . headername . "__\n\n\n\n" .
+    \ "#endif // __" . headername . "__"
+
+    4|
+endfunction
+
+autocmd BufNewFile *.{h,hpp} call <SID>insert_c_header()
 
 filetype plugin indent on
 
