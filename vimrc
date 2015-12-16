@@ -21,7 +21,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-smooth-scroll'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
@@ -41,8 +40,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-" set cindent
-" set ignorecase
+set ignorecase
 set showmatch
 set matchtime=2
 set hlsearch
@@ -58,6 +56,9 @@ set nofoldenable
 set ttyfast
 set pastetoggle=<F2>
 set laststatus=2
+set foldenable
+set foldmethod=indent
+set foldlevel=3
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -68,6 +69,7 @@ set dictionary+=~/.vimdictionary
 
 vnoremap > >gv
 vnoremap < <gv
+vnoremap <C-c> "+y
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -82,6 +84,7 @@ inoremap <C-a> <Home>
 nnoremap <S-Left> g;
 nnoremap <S-Right> g,
 
+noremap <F1> <Esc>
 nnoremap <F3> :set hlsearch!<CR>
 
 " For :CtrlPBuffer
@@ -96,7 +99,7 @@ noremap <S-w> :YcmCompleter GetDoc<CR>
 set t_Co=256
 
 " colorscheme jellybeans
-colorscheme Tomorrow
+colorscheme Tomorrow-Night-Bright
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=255
@@ -116,7 +119,6 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_start_case=1
 let g:neocomplete#sources#syntax#min_keyword_length=2
 
-
 " let g:ctrlp_cmd='CtrlP ~/codes'
 let g:ctrlp_working_path_mode='cra'
 let g:ctrlp_clear_cache_on_exit=0
@@ -129,13 +131,6 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(bak|swp|so|pyc|o|beam|dump|gz|bz2|tar)$',
     \}
 
-
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 22, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
-
-
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
@@ -146,7 +141,6 @@ autocmd FileType cpp setlocal completeopt-=preview
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
-
 
 
 if has("gui_running")
@@ -183,28 +177,36 @@ autocmd FileType c,cpp,java,php,ruby,python,erlang,go,rust,sql,sh,html,css,vim a
 
 " Automatic Insert/Update Header When File Create/Write
 
-autocmd BufNewFile *.py
-    \ exe "normal O" .
-    \ "\# -*- coding: utf-8 -*-\n" .
-    \ "\"\"\"\"\n" .
-    \ "Author:        Wang Chao <yueyoum@gmail.com>\n" .
-    \ "Filename:      " . expand('%:t') . "\n" .
-    \ "Date created:  " . strftime("%Y-%m-%d %H:%M:%S") . "\n" .
-    \ "Description: \n\n" .
-    \ "\"\"\"\"\n"
+function! s:SetPythonFileHeader()
+    call setline(1, "\# -*- coding: utf-8 -*-")
+    call setline(2, "")
+    call setline(3, "\"\"\"")
+    call setline(4, "Author:        Wang Chao <yueyoum@gmail.com>")
+    call setline(5, "Filename:      ".expand("%:t"))
+    call setline(6, "Date created:  ".strftime("%Y-%m-%d %H:%M:%S"))
+    call setline(7, "Description:   ")
+    call setline(8, "")
+    call setline(9, "\"\"\"")
+endfunc
 
+autocmd BufNewFile *.py call <SID>SetPythonFileHeader()
 
-function! s:insert_c_header()
-    let headername = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-    exe "normal O" .
-    \ "#ifndef __" . headername . "__\n" .
-    \ "#define __" . headername . "__\n\n\n\n" .
-    \ "#endif // __" . headername . "__"
+function! s:SetCHeaderFileHeader()
+    let filename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    let headername = "__" . filename . "__"
+    call setline(1, "\#ifndef " . headername)
+    call setline(2, "\#define " . headername)
+    call setline(3, "")
+    call setline(4, "")
+    call setline(5, "")
+    call setline(6, "\#endif // " . headername)
+    call cursor(4, 1)
+endfunc
 
-    4|
-endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>SetCHeaderFileHeader()
 
-autocmd BufNewFile *.{h,hpp} call <SID>insert_c_header()
-
+filetype on
+filetype indent on
+filetype plugin on
 filetype plugin indent on
 
