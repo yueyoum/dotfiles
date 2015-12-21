@@ -102,7 +102,7 @@ set t_Co=256
 colorscheme Tomorrow-Night-Bright
 
 set colorcolumn=81
-highlight ColorColumn ctermbg=255
+highlight ColorColumn ctermbg=234
 
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
@@ -187,6 +187,9 @@ function! s:SetPythonFileHeader()
     call setline(7, "Description:   ")
     call setline(8, "")
     call setline(9, "\"\"\"")
+    call setline(10, "")
+    call setline(11, "")
+    call cursor(11, 1)
 endfunc
 
 autocmd BufNewFile *.py call <SID>SetPythonFileHeader()
