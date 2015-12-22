@@ -8,28 +8,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'jimenezrick/vimerl'
-" Plugin 'Shougo/neocomplete'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-skeletons'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'vim-scripts/TaskList.vim'
-Plugin 'vim-scripts/fontzoom.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'pangloss/vim-javascript'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
-Plugin 'rust-lang/rust.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " colorscheme
-Plugin 'tomasr/molokai'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'nanotech/jellybeans.vim'
 
@@ -63,8 +58,6 @@ set foldlevel=3
 set encoding=utf-8
 set fileencoding=utf-8
 
-set dictionary+=~/.vimdictionary
-
 " Custom Key bindings
 
 vnoremap > >gv
@@ -76,7 +69,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-inoremap <C-l> <C-x><C-k>
+inoremap <C-o> <C-x><C-o>
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
 
@@ -90,12 +83,6 @@ nnoremap <F3> :set hlsearch!<CR>
 " For :CtrlPBuffer
 noremap <c-m> :CtrlPBuffer<CR>
 
-" For YouCompleteMe
-noremap <S-d> :YcmCompleter GoToDefinition<CR>
-noremap <S-l> :YcmCompleter GoToDeclaration<CR>
-noremap <S-t> :YcmCompleter GetType<CR>
-noremap <S-w> :YcmCompleter GetDoc<CR>
-
 set t_Co=256
 
 " colorscheme jellybeans
@@ -103,8 +90,6 @@ colorscheme Tomorrow-Night-Bright
 
 set colorcolumn=81
 highlight ColorColumn ctermbg=234
-
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
 let g:airline_powerline_fonts=1
 
@@ -118,6 +103,9 @@ let g:acp_enableAtStartup=0
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_start_case=1
 let g:neocomplete#sources#syntax#min_keyword_length=2
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'erlang': $HOME.'/.vimdictionary'
+    \ }
 
 " let g:ctrlp_cmd='CtrlP ~/codes'
 let g:ctrlp_working_path_mode='cra'
