@@ -13,6 +13,8 @@ Plugin 'kevinw/pyflakes-vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-skeletons'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'plasticboy/vim-markdown'
@@ -23,10 +25,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 " colorscheme
-Plugin 'w0ng/vim-hybrid'
-Plugin 'nanotech/jellybeans.vim'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 
@@ -54,6 +54,7 @@ set laststatus=2
 set foldenable
 set foldmethod=indent
 set foldlevel=3
+set completeopt+=longest
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -85,29 +86,24 @@ noremap <c-m> :CtrlPBuffer<CR>
 
 set t_Co=256
 
-" colorscheme jellybeans
-colorscheme Tomorrow-Night-Bright
+" colorscheme Tomorrow-Night-Bright
+colorscheme jellybeans
 
-set colorcolumn=81
-highlight ColorColumn ctermbg=234
-
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
 
 let g:vim_markdown_folding_disabled=1
 
-let g:cpp_class_scope_highlight=1
-
 let g:acp_enableAtStartup=0
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_start_case=1
+let g:neocomplete#enable_auto_select=0
 let g:neocomplete#sources#syntax#min_keyword_length=2
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'erlang': $HOME.'/.vimdictionary'
     \ }
 
-" let g:ctrlp_cmd='CtrlP ~/codes'
 let g:ctrlp_working_path_mode='cra'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_max_depth=10
@@ -133,7 +129,7 @@ autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
 
 if has("gui_running")
     " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
-    set guifont=Hack\ Regular\ 13
+    set guifont=Fira\ Mono\ 11
     set cursorline
     set colorcolumn=0
 
@@ -150,8 +146,6 @@ if has("gui_running")
     set guioptions+=a
     set mousemodel=popup
 
-    " colorscheme Tomorrow
-
     " paste via Crtl+Shift+V
     " nnoremap <silent> <c-s-v> "+gP
     " inoremap <silent> <c-s-v> <Esc><Right>"+gPi
@@ -159,7 +153,6 @@ endif
 
 
 " Automatic remove trailing whitespaces
-
 autocmd FileType c,cpp,java,php,ruby,python,erlang,go,rust,sql,sh,html,css,vim autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 
