@@ -55,6 +55,7 @@ set foldenable
 set foldmethod=indent
 set foldlevel=3
 set completeopt+=longest
+set clipboard=unnamedplus
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -89,7 +90,7 @@ set t_Co=256
 " colorscheme Tomorrow-Night-Bright
 colorscheme jellybeans
 
-" let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
 
