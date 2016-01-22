@@ -9,18 +9,19 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
-Plugin 'kevinw/pyflakes-vim'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-skeletons'
-Plugin 'vim-erlang/vim-erlang-compiler'
-Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'vim-scripts/TaskList.vim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'yueyoum/vim-erlang-skeletons'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -51,9 +52,6 @@ set nofoldenable
 set ttyfast
 set pastetoggle=<F2>
 set laststatus=2
-set foldenable
-set foldmethod=indent
-set foldlevel=3
 set completeopt+=longest
 set clipboard=unnamedplus
 
@@ -71,13 +69,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-inoremap <C-o> <C-x><C-o>
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
-
-" Jump to previous/last edit location
-nnoremap <S-Left> g;
-nnoremap <S-Right> g,
 
 noremap <F1> <Esc>
 nnoremap <F3> :set hlsearch!<CR>
@@ -87,14 +80,11 @@ noremap <c-m> :CtrlPBuffer<CR>
 
 set t_Co=256
 
-" colorscheme Tomorrow-Night-Bright
 colorscheme jellybeans
 
 let g:airline_powerline_fonts=1
 
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
-
-let g:vim_markdown_folding_disabled=1
 
 let g:acp_enableAtStartup=0
 let g:neocomplete#enable_at_startup=1
@@ -104,6 +94,10 @@ let g:neocomplete#sources#syntax#min_keyword_length=2
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'erlang': $HOME.'/.vimdictionary'
     \ }
+
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 let g:ctrlp_working_path_mode='cra'
 let g:ctrlp_clear_cache_on_exit=0
@@ -189,6 +183,23 @@ function! s:SetCHeaderFileHeader()
 endfunc
 
 autocmd BufNewFile *.{h,hpp} call <SID>SetCHeaderFileHeader()
+
+function! s:SetErlangFileHeader()
+    let modulename = substitute(expand("%:t"), "\\.erl", "", "")
+    call setline(1, "%%% @author: Wang Chao <yueyoum@gmail.com>")
+    call setline(2, "%%% @doc")
+    call setline(3, "%%%")
+    call setline(4, "%%% @end")
+    call setline(5, "%%% Date created: ".strftime("%Y-%m-%d %H:%M:%S"))
+    call setline(6, "")
+    call setline(7, "")
+    call setline(8, "-module(" . modulename . ")")
+    call setline(9, "")
+    call setline(10, "")
+    call cursor(10, 1)
+endfunc
+
+autocmd BufNewFile *.erl call <SID>SetErlangFileHeader()
 
 filetype on
 filetype indent on

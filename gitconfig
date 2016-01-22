@@ -6,9 +6,9 @@
 [color]
 	ui = true
 [diff]
-	tool = meld
+	tool = kdiff3
 [merge]
-	tool = meld
+	tool = kdiff3
 [alias]
 	br = branch
 	st = status
