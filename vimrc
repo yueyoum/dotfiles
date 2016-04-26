@@ -13,13 +13,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-compiler'
-Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'yueyoum/vim-erlang-skeletons'
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tomtom/tcomment_vim'
@@ -30,7 +24,6 @@ Plugin 'uarun/vim-protobuf'
 Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
-
 
 set expandtab
 set tabstop=4
