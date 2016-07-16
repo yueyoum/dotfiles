@@ -13,9 +13,10 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'vim-scripts/TaskList.vim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -47,6 +48,7 @@ set pastetoggle=<F2>
 set laststatus=2
 set completeopt+=longest
 set clipboard=unnamedplus
+set hidden
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -62,6 +64,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprevious<CR>
+
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
 
@@ -75,7 +80,11 @@ set t_Co=256
 
 colorscheme jellybeans
 
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
+let g:airline#extensions#tabline#enabled=1
+
+let g:ycm_global_ycm_extra_conf='/home/wang/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter='/usr/bin/python'
 
 let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
 
