@@ -6,15 +6,11 @@
 [color]
 	ui = true
 [diff]
-	tool = kdiff3
+	tool = meld
 [merge]
-	tool = kdiff3
+	tool = meld
 [alias]
 	br = branch
 	st = status
-[pack]
-	windowMemory = 100m
-	SizeLimit = 100m
-	threads = 1
 [github]
 	user = yueyoum

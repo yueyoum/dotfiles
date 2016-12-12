@@ -13,14 +13,13 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
 " colorscheme
 Plugin 'flazz/vim-colorschemes'
 
@@ -83,10 +82,10 @@ colorscheme jellybeans
 let g:airline_powerline_fonts=0
 let g:airline#extensions#tabline#enabled=1
 
-let g:ycm_global_ycm_extra_conf='/home/wang/.ycm_extra_conf.py'
-let g:ycm_server_python_interpreter='/usr/bin/python'
-
-let NERDTreeIgnore=['\.pyc$', '\.beam$', '\.o$', '\.so$', '\.a$', '\.bak$', '\.swp$', '\.log$']
+let NERDTreeIgnore=[
+            \ '\.pyc$', '\.beam$', '\.o$', '\.so$',
+            \'\.a$', '\.bak$', '\.swp$', '\.log$'
+            \ ]
 
 let g:acp_enableAtStartup=0
 let g:neocomplete#enable_at_startup=1
@@ -97,9 +96,6 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'erlang': $HOME.'/.vimdictionary'
     \ }
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
 
 let g:ctrlp_working_path_mode='cra'
 let g:ctrlp_clear_cache_on_exit=0
@@ -120,9 +116,6 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 autocmd FileType c setlocal completeopt-=preview
 autocmd FileType cpp setlocal completeopt-=preview
 autocmd FileType python setlocal completeopt-=preview
-autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType eruby set tabstop=2 shiftwidth=2 softtabstop=2
-
 
 if has("gui_running")
     " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
@@ -142,10 +135,6 @@ if has("gui_running")
 
     set guioptions+=a
     set mousemodel=popup
-
-    " paste via Crtl+Shift+V
-    " nnoremap <silent> <c-s-v> "+gP
-    " inoremap <silent> <c-s-v> <Esc><Right>"+gPi
 endif
 
 
@@ -195,10 +184,13 @@ function! s:SetErlangFileHeader()
     call setline(5, "%%% Date created: ".strftime("%Y-%m-%d %H:%M:%S"))
     call setline(6, "")
     call setline(7, "")
-    call setline(8, "-module(" . modulename . ")")
+    call setline(8, "-module(" . modulename . ").")
     call setline(9, "")
-    call setline(10, "")
-    call cursor(10, 1)
+    call setline(10, "-export([start/0]).")
+    call setline(11, "")
+    call setline(12, "start() ->")
+    call setline(13, "    ok.")
+    call cursor(13, 1)
 endfunc
 
 autocmd BufNewFile *.erl call <SID>SetErlangFileHeader()
