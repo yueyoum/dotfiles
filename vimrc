@@ -25,6 +25,9 @@ Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 
+set t_Co=256
+colorscheme jellybeans
+
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -75,12 +78,12 @@ nnoremap <F3> :set hlsearch!<CR>
 " For :CtrlPBuffer
 noremap <c-m> :CtrlPBuffer<CR>
 
-set t_Co=256
 
-colorscheme jellybeans
-
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+
+let g:ycm_global_ycm_extra_conf='/home/wang/.ycm_extra_conf.py'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall'
 
 let NERDTreeIgnore=[
             \ '\.pyc$', '\.beam$', '\.o$', '\.so$',
