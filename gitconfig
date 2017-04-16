@@ -14,3 +14,7 @@
 	st = status
 [github]
 	user = yueyoum
+# [http]
+# 	proxy = socks5://127.0.0.1:7070
+# [https]
+# 	proxy = socks5://127.0.0.1:7070
