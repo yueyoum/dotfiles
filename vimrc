@@ -49,7 +49,7 @@ set ttyfast
 set pastetoggle=<F2>
 set laststatus=2
 set completeopt+=longest
-set clipboard=unnamedplus
+" set clipboard=unnamed
 set hidden
 
 set encoding=utf-8
