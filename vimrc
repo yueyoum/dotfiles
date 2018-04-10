@@ -8,11 +8,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0rp/ale'
+Plugin 'ten0s/syntaxerl'
+Plugin 'justinmk/vim-sneak'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'tomtom/tcomment_vim'
@@ -20,13 +22,21 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'MattesGroeger/vim-bookmarks'
 " colorscheme
 Plugin 'flazz/vim-colorschemes'
+Plugin 'morhetz/gruvbox'
+Plugin 'solarnz/thrift.vim'
 
 call vundle#end()
 
 set t_Co=256
-colorscheme jellybeans
+set background=dark
+" colorscheme PaperColor
+colorscheme gruvbox
 
 set expandtab
 set tabstop=4
@@ -51,11 +61,15 @@ set laststatus=2
 set completeopt+=longest
 " set clipboard=unnamed
 set hidden
+set cot-=preview
 
 set encoding=utf-8
 set fileencoding=utf-8
 
 " Custom Key bindings
+
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 
 vnoremap > >gv
 vnoremap < <gv
@@ -68,6 +82,7 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
+nnoremap <leader>q :bd<CR>
 
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
@@ -76,11 +91,18 @@ noremap <F1> <Esc>
 nnoremap <F3> :set hlsearch!<CR>
 
 " For :CtrlPBuffer
-noremap <c-m> :CtrlPBuffer<CR>
+noremap <C-m> :CtrlPBuffer<CR>
 
+let g:airline_theme='gruvbox'
+let g:sneak#label = 1
+let g:ale_linters = {
+            \ 'erlang': ['syntaxerl'],
+            \}
 
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:ycm_global_ycm_extra_conf='/home/wang/.ycm_extra_conf.py'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall'
@@ -100,7 +122,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ }
 
 
-let g:ctrlp_working_path_mode='cra'
+let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_max_depth=10
 let g:ctrlp_lazy_update=1
@@ -110,6 +132,17 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]\.(git|hg|svn|env)$',
     \ 'file': '\v\.(bak|swp|so|pyc|o|beam|dump|gz|bz2|tar)$',
     \}
+
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching=0
+    let g:ackprg='ag --vimgrep'
+endif
+
+" bind K to grep word under cursor or selection
+nnoremap K :Ack! <CR>
+vnoremap K y:Ack! <C-r>=fnameescape(@")<CR><CR>
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
