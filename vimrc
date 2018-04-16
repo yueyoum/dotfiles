@@ -10,6 +10,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'w0rp/ale'
 Plugin 'ten0s/syntaxerl'
 Plugin 'justinmk/vim-sneak'
@@ -33,11 +35,6 @@ Plugin 'solarnz/thrift.vim'
 
 call vundle#end()
 
-set t_Co=256
-set background=dark
-" colorscheme PaperColor
-colorscheme gruvbox
-
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -51,20 +48,27 @@ set incsearch
 set ruler
 set number
 set numberwidth=5
-set nocursorline
+set cursorline
 set backspace=indent,eol,start
 set history=100
 set nofoldenable
 set ttyfast
 set pastetoggle=<F2>
 set laststatus=2
-set completeopt+=longest
+set completeopt=longest,menuone,preview
 " set clipboard=unnamed
 set hidden
 set cot-=preview
 
 set encoding=utf-8
 set fileencoding=utf-8
+
+set t_Co=256
+set background=dark
+" colorscheme PaperColor
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
+
 
 " Custom Key bindings
 
@@ -86,6 +90,7 @@ nnoremap <leader>q :bd<CR>
 
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 noremap <F1> <Esc>
 nnoremap <F3> :set hlsearch!<CR>
@@ -93,7 +98,6 @@ nnoremap <F3> :set hlsearch!<CR>
 " For :CtrlPBuffer
 noremap <C-m> :CtrlPBuffer<CR>
 
-let g:airline_theme='gruvbox'
 let g:sneak#label = 1
 let g:ale_linters = {
             \ 'erlang': ['syntaxerl'],
@@ -105,7 +109,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:ycm_global_ycm_extra_conf='/home/wang/.ycm_extra_conf.py'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall'
 
 let NERDTreeIgnore=[
             \ '\.pyc$', '\.beam$', '\.o$', '\.so$',
@@ -116,9 +119,9 @@ let g:acp_enableAtStartup=0
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_start_case=1
 let g:neocomplete#enable_auto_select=0
-let g:neocomplete#sources#syntax#min_keyword_length=2
+let g:neocomplete#sources#syntax#min_keyword_length=1
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'erlang': $HOME.'/.vimdictionary'
+    \ 'erlang': $HOME.'/.vim/erlangdict'
     \ }
 
 
