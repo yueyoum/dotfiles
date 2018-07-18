@@ -41,6 +41,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set ignorecase
+set smartcase
 set showmatch
 set matchtime=2
 set hlsearch
@@ -49,7 +50,13 @@ set incsearch
 set ruler
 set number
 set numberwidth=5
+set autoindent
+set cindent
 set cursorline
+set nowrap
+set ttimeout
+set ttimeoutlen=50
+set winaltkeys=no
 set backspace=indent,eol,start
 set history=100
 set nofoldenable
