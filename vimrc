@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 Plugin 'w0rp/ale'
 Plugin 'ten0s/syntaxerl'
 Plugin 'justinmk/vim-sneak'
@@ -23,16 +23,12 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'uarun/vim-protobuf'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-compiler'
-Plugin 'vim-erlang/vim-erlang-skeletons'
 Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'MattesGroeger/vim-bookmarks'
 " colorscheme
 Plugin 'flazz/vim-colorschemes'
 Plugin 'morhetz/gruvbox'
 Plugin 'solarnz/thrift.vim'
+Plugin 'rakr/vim-one'
 
 call vundle#end()
 
@@ -61,6 +57,8 @@ set backspace=indent,eol,start
 set history=100
 set nofoldenable
 set ttyfast
+set re=1
+set lazyredraw
 set pastetoggle=<F2>
 set laststatus=2
 set completeopt=longest,menuone,preview
@@ -72,10 +70,12 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 set t_Co=256
-set background=dark
+set background=light
 " colorscheme PaperColor
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+" colorscheme gruvbox
+" let g:airline_theme='gruvbox'
+colorscheme one
+let g:airline_theme='one'
 
 
 " Custom Key bindings
@@ -94,7 +94,8 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
-nnoremap <leader>q :bd<CR>
+" nnoremap q :b#<CR>:bd #<CR>
+nnoremap q :bp<bar>sp<bar>bn<bar>bd<CR>.
 
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
