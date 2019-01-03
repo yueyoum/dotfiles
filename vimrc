@@ -70,12 +70,12 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 set t_Co=256
-set background=light
-" colorscheme PaperColor
+set background=dark
+colorscheme PaperColor
 " colorscheme gruvbox
 " let g:airline_theme='gruvbox'
-colorscheme one
-let g:airline_theme='one'
+" colorscheme one
+" let g:airline_theme='one'
 
 
 " Custom Key bindings
@@ -153,8 +153,8 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor or selection
-nnoremap K :Ack! <CR>
-vnoremap K y:Ack! <C-r>=fnameescape(@")<CR><CR>
+nnoremap L :Ack! <CR>
+vnoremap L y:Ack! <C-r>=fnameescape(@")<CR><CR>
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
