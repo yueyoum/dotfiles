@@ -6,15 +6,13 @@
 [color]
 	ui = true
 [diff]
-	tool = meld
+	tool = kdiff3
 [merge]
-	tool = meld
+	tool = kdiff3
 [alias]
 	br = branch
 	st = status
 [github]
 	user = yueyoum
-# [http]
-# 	proxy = socks5://127.0.0.1:7070
-# [https]
-# 	proxy = socks5://127.0.0.1:7070
+[credential]
+	helper = store
